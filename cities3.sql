@@ -1,21 +1,21 @@
 1. 
-SELECT name, population
+SELECT name
 FROM cities
-WHERE population > 1000000;
+WHERE name LIKE '%ськ';
 2. 
-SELECT name, population, region
+SELECT name
 FROM cities
-WHERE region = 'E' OR region = 'W'
-ORDER BY population DESC;
+WHERE name LIKE '%донец%';
 3. 
-SELECT name, population, region
+SELECT Concat(name, ' (', region, ')')
 FROM cities
-WHERE population > 50000 AND region IN('S','C','N');
+WHERE population > 100000
+ORDER BY name;
 4. 
-SELECT name, population, region
+SELECT name, population, population/40000000*100 AS procent
 FROM cities
-WHERE population > 150000 AND population < 350000 AND region IN('E','W','N')
-LIMIT 20;
+ORDER BY population DESC
+LIMIT 10;
 5. 
 SELECT name, population, region
 FROM cities
