@@ -17,8 +17,7 @@ FROM cities
 ORDER BY population DESC
 LIMIT 10;
 5. 
-SELECT name, population, region
+SELECT CONCAT(name, ' (', population/40000000*100, ')')
 FROM cities
-WHERE region IN('C','S','N')
-ORDER BY population DESC
-LIMIT 10 OFFSET 10;
+WHERE population/40000000*100 > 0.099
+ORDER BY population/40000000*100 DESC;
