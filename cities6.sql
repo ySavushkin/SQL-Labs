@@ -31,6 +31,21 @@ CREATE TABLE `stations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `transitions`;
+CREATE TABLE `transitions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `start_station` int(10) unsigned NOT NULL,
+  `end_station` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`start_station`) REFERENCES `stations`(`id`),
+  FOREIGN KEY (`end_station`) REFERENCES `stations`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO `transitions`(`start_station`, `end_station`) VALUES
+(6, 20),
+(23, 13), 
+(12, 4); 
+
 INSERT INTO `lines`(`id`, `name`, `color`) VALUES
 (1, 'Холодногірсько-Заводська' , 'Червоний'),
 (2, 'Салтівська' , 'Синій'),
