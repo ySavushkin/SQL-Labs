@@ -38,6 +38,9 @@ CREATE TABLE IF NOT EXISTS files (
     file_id INT PRIMARY KEY,
     task_id INT,
     project_id INT,
+    file_name VARCHAR(255) NOT NULL,
+    file_type VARCHAR(50) NOT NULL,
+    file_data LONGBLOB,
     FOREIGN KEY (task_id) REFERENCES tasks(task_id),
     FOREIGN KEY (project_id) REFERENCES projects(project_id)
 );
