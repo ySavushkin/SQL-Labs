@@ -23,5 +23,6 @@ CREATE TABLE IF NOT EXISTS ratings (
     news_id INT,
     ip_address VARCHAR(15) NOT NULL,
     rating INT CHECK (rating >= 1 AND rating <= 5),
+    PRIMARY KEY (news_id, ip_address),
     FOREIGN KEY (news_id) REFERENCES news(news_id)
 );
