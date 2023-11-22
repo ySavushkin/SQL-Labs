@@ -42,12 +42,10 @@ CREATE TABLE IF NOT EXISTS project_files (
     FOREIGN KEY (project_id) REFERENCES projects(id)
 );
 
--- Добавляем таблицу task_files
 CREATE TABLE IF NOT EXISTS task_files (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     url VARCHAR(255) NOT NULL,
     task_id INT,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
+);
