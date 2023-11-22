@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS project_members (
     project_id INT,
     user_id INT,
     PRIMARY KEY (project_id, user_id),
-    FOREIGN KEY (project_id) REFERENCES projects(project_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (project_id) REFERENCES projects(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS tasks (
@@ -22,24 +22,32 @@ CREATE TABLE IF NOT EXISTS tasks (
     author_id INT,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    FOREIGN KEY (project_id) REFERENCES projects(project_id),
-    FOREIGN KEY (author_id) REFERENCES users(user_id)
+    FOREIGN KEY (project_id) REFERENCES projects(id),
+    FOREIGN KEY (author_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS task_assignees (
     task_id INT,
     user_id INT,
     PRIMARY KEY (task_id, user_id),
-    FOREIGN KEY (task_id) REFERENCES tasks(task_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (task_id) REFERENCES tasks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS files (
-    file_id INT PRIMARY KEY,
-    task_id INT,
+CREATE TABLE IF NOT EXISTS project_files (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
     project_id INT,
-    file_name VARCHAR(255) NOT NULL,
-    file_type VARCHAR(50) NOT NULL,
-    FOREIGN KEY (task_id) REFERENCES tasks(task_id),
-    FOREIGN KEY (project_id) REFERENCES projects(project_id)
+    FOREIGN KEY (project_id) REFERENCES projects(id)
 );
+
+-- Добавляем таблицу task_files
+CREATE TABLE IF NOT EXISTS task_files (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    task_id INT,
+    FOREIGN KEY (task_id) REFERENCES tasks(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
