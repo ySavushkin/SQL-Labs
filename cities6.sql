@@ -27,7 +27,9 @@ DROP TABLE IF EXISTS `stations`;
 CREATE TABLE `stations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `line` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `line_id` int(10) UNSIGNED NOT NULL,
+  `previous_station` varchar(255) COLLATE utf8_unicode_ci,
+  `next_station` varchar(255) COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
