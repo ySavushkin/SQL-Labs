@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS users (
-    user_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     username VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS projects (
-    project_id INT PRIMARY KEY,
-    project_name VARCHAR(255) NOT NULL
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS project_members (
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS project_members (
 );
 
 CREATE TABLE IF NOT EXISTS tasks (
-    task_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     project_id INT,
     author_id INT,
     title VARCHAR(255) NOT NULL,
@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS files (
     project_id INT,
     file_name VARCHAR(255) NOT NULL,
     file_type VARCHAR(50) NOT NULL,
-    file_data LONGBLOB,
     FOREIGN KEY (task_id) REFERENCES tasks(task_id),
     FOREIGN KEY (project_id) REFERENCES projects(project_id)
 );
